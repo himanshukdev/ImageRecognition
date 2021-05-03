@@ -10,9 +10,9 @@ const coordinatesParser = (paragraphs) => {
   let CoordArray=[];
   paragraphs.forEach(element => {
     coords = element.text.match(pattern);
-    CoordArray.concat(coords);
+    CoordArray= CoordArray.concat(coords);
   });
-  return coords;
+  return CoordArray;
 }
 
 export  async function recognizer(image) {
