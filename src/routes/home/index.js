@@ -37,7 +37,7 @@ const Home = () => {
       // Running our image recognizer.
       recognizer(file).then((data) => {
         console.log(data);
-        if (data && data.length > 0) {
+        if (data && data.length > 0 && data[0] !== null) {
           setIsTaskDone(true);
           // setting task results in component state.
           setCollectedCoordinates(data);
@@ -106,7 +106,8 @@ const Home = () => {
             {isTaskDone ? (
               <>
                 <article style={{ flex: "1", marginLeft: "148px" }}>
-                  {typeof collectedCoordinates === "string" ? (
+									{console.log(collectedCoordinates)}
+                  {typeof collectedCoordinates === "string" || collectedCoordinates.length == 0 ? (
                     <>
                       <span class={style.nomatch}>
                         {collectedCoordinates}
