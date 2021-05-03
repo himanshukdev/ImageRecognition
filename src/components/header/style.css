@@ -25,6 +25,11 @@
 .header nav {
 	float: right;
 	font-size: 100%;
+	position: relative;
+	bottom: 60px;
+	font-family: cursive;
+	margin-inline-end: 20px;
+	font-size: 18px;
 }
 
 .header nav a {
@@ -38,13 +43,10 @@
 	text-decoration: none;
 	color: #FFF;
 	will-change: background-color;
+	letter-spacing: 3px;
 }
 
-.header nav a:hover,
-.header nav a:active {
+.header nav a:hover {
 	background: rgba(0,0,0,0.2);
 }
 
-.header nav a.active {
-	background: rgba(0,0,0,0.4);
-}
