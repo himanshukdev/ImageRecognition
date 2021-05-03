@@ -1,18 +1,26 @@
+// Library Imports.
 import { h,createRef } from 'preact';
 import style from './style.css';
 import { useState, } from 'preact/hooks';
+import Icon from 'preact-material-components/Icon';
 import {recognizer} from "./recognition";
 
 const Home = () => {
 	
+	// Created ref for custom file upload button.
 	const hiddenFileInput = createRef();
+	// Component state Management for images.
 	const [state, setState] = useState({
 		uploadedImage:"",
 		FileExtension:""
 	});
 
+	// Initializing flags for show/hide progess.
+	// This will be toggeled as per status of recognition process.
 	const [isTaskDone,setIsTaskDone] = useState(null);
 	const [collectedCoordinates,setCollectedCoordinates] = useState("");
+
+	// file upload handler.
 	const fileUploadHandler = event => {
     const reader = new FileReader();
     const file = event.target.files[0];
@@ -27,13 +35,16 @@ const Home = () => {
     };
 
     reader.onloadend = upload => {
-			setIsTaskDone(false)
+			setIsTaskDone(false);
+			// Running our image recognizer.
       recognizer(file).then((data)=>{
 			console.log(data)
 				if(data && data.length>0){
 					setIsTaskDone(true)
+					// setting task results in component state.
 					setCollectedCoordinates(data)
 				}else{
+					// setting task results in component state.
 					setCollectedCoordinates("No match found.")
 					setIsTaskDone(true)
 				}
@@ -47,8 +58,12 @@ const Home = () => {
 		<div class={style.home}>
 			<div class={style.formcontainer}>
 				<div style={{flex:"1",display:"inline-grid",gridGap:"20px"}}>
-			
-					<button class={style.customuploader} onClick={()=>hiddenFileInput.current.click()}>Please Upload an image</button>
+					<button class={style.customuploader} onClick={()=>hiddenFileInput.current.click()}>
+						<span>
+							<Icon>add_photo_alternate</Icon>
+							<span style={{position:"relative",bottom:"4px"}}>Please Upload an image</span>
+						</span>
+					</button>
 				<input
 					type="file"
 					ref={hiddenFileInput}
@@ -71,11 +86,17 @@ const Home = () => {
 				</div>
 				
 				{state.uploadedImage &&(
-					<img
-					src={state.uploadedImage}
-					alt=""
-					class={style.imageholder}
-				/>
+					<>
+						<div class={style.imagecontainer}>
+							<span style={{float:"right",cursor:"pointer"}} onClick={()=>hiddenFileInput.current.click()}><Icon >mode</Icon></span>
+							<img
+								src={state.uploadedImage}
+								alt=""
+								class={style.imageholder}
+							/>
+						</div>
+						
+					</>
 				)}
 				{state.uploadedImage && (
 					<>
