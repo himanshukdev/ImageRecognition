@@ -61,6 +61,14 @@
   background: #673ab7;
   cursor: pointer;
   color: white;
+  font-family: cursive;
+}
+
+.linkcam {
+  text-decoration: auto;
+  color: white;
+  font-size: 20px;
+  font-family: cursive;
 }
 
 .customuploader:hover {

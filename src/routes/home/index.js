@@ -2,6 +2,7 @@
 import { h, createRef } from "preact";
 import style from "./style.css";
 import { useState } from "preact/hooks";
+import { Link } from 'preact-router/match';
 import Icon from "preact-material-components/Icon";
 import { recognizer } from "./recognition";
 
@@ -61,12 +62,13 @@ const Home = () => {
             onClick={() => hiddenFileInput.current.click()}
           >
             <span>
-              <Icon>add_photo_alternate</Icon>
+              {/* <Icon>add_photo_alternate</Icon> */}
               <span style={{ position: "relative", bottom: "4px" }}>
                 Please Upload an image
               </span>
             </span>
           </button>
+          <button  class={style.customuploader}><Link class={style.linkcam} href="/profile">Use Web Cam</Link></button>
           <input
             type="file"
             ref={hiddenFileInput}
@@ -87,7 +89,6 @@ const Home = () => {
             </ul>
           </div>
         </div>
-
         {state.uploadedImage && (
           <>
             <div class={style.imagecontainer}>
