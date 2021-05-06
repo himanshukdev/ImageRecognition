@@ -33,7 +33,7 @@ const Profile = () => {
   };
 
   const snapPicture = () => {
-		thisWebcam.snap();
+    thisWebcam._canvasElement.style.transform = "scaleX(-1)";
     const picture = thisWebcam.snap();
     console.log(picture);
 		setIsTaskDone(false);
